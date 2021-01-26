@@ -2,3 +2,25 @@ body{
     padding: 100px;
     font-family: 'Poppins', sans-serif;
 }
+.submit-form{
+    background-color: whitesmoke;
+}
+#transaction-area{
+    display: none;
+}
+#transaction-area .deposit{
+    background-color: slateblue;
+}
+#transaction-area .withdraw{
+    background-color: lightsalmon;
+}
+#transaction-area .balance{
+    background-color: orange;
+}
+#transaction-area .status{
+    color: white;
+    border-radius: 10px;
+}
+#transaction-area .deposit-withdraw{
+    border-radius: 5px;
+}
