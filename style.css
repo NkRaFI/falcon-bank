@@ -22,5 +22,6 @@ body{
     border-radius: 10px;
 }
 #transaction-area .deposit-withdraw{
-    border-radius: 5px;
+    border-radius: 10px;
+    border: 3px solid rgb(87, 87, 233);
 }
