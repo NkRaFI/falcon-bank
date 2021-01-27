@@ -33,19 +33,19 @@
             <div class="col-md-4">
                 <div class="deposit m-4 p-3 status">
                     <h5>Deposit</h5>
-                    <h2>$00</h2>
+                    <h2>$ <span id="current-deposit">00</span></h2>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="withdraw m-4 p-3 status">
                     <h5>Withdraw</h5>
-                    <h2>$00</h2>
+                    <h2>$ <span class="current-withdraw">00</span></h2>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="balance m-4 p-3 status">
                     <h5>Balance</h5>
-                    <h2>$1240</h2>
+                    <h2>$ <span id="current-balance">1240</span></h2>
                 </div>
             </div>
         </div>
@@ -54,27 +54,73 @@
             <div class="col-md-6">
                 <div class="shadow p-5 m-2 deposit-withdraw">
                     <h4 class="my-3">Deposit</h4>
-                    <input type="number" class="form-control p-2" placeholder="$ amount you want to deposit">
-                    <button class="btn btn-primary d-block my-4">Deposit</button>
+                    <input type="number" id="deposit-input" class="form-control p-2" placeholder="$ amount you want to deposit">
+                    <button id="deposit-btn" class="btn btn-primary d-block my-4">Deposit</button>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="shadow p-5 m-2 deposit-withdraw">
                     <h4 class="my-3">Withdraw</h4>
-                    <input type="number" class="form-control p-2" placeholder="$ amount you want to withdraw">
-                    <button class="btn btn-primary d-block my-4">Withdraw</button>
+                    <input type="number" id="withdraw-amount" class="form-control p-2" placeholder="$ amount you want to withdraw">
+                    <button id="withdraw-btn" class="btn btn-primary d-block my-4">Withdraw</button>
                 </div>
             </div>
         </div>
     </section>
 
     <script>
+        //login area
         document.getElementById("login-btn").addEventListener("click", function () {
             let loginArea = document.getElementById("login-area");
             loginArea.style.display = "none";
             let transactionArea = document.getElementById("transaction-area");
             transactionArea.style.display = "block"
         })
+
+        //statistic area start
+        /*deposit button to get deposit input value*/
+        document.getElementById("deposit-btn").addEventListener("click", function(){
+            /*with takeInputValue function*/
+            let depositInputInNumber = takeInputValue("deposit-input");
+
+            /* without takeInputValue function*/
+            // let depositInput = document.getElementById("deposit-input").value;
+            // let depositInputInNumber = parseFloat(depositInput);
+
+            /*without calculation function*/
+            // let currentDeposit = document.getElementById("current-deposit").innerText;
+            // let currentDepositInNumber = parseFloat(currentDeposit);
+            // let newDeposit = depositInputInNumber + currentDepositInNumber;
+            // document.getElementById("current-deposit").innerText = newDeposit;
+            // document.getElementById(clearDepositInput).value = "";
+
+            /* with calculation function*/ 
+            updateInnerText("current-deposit", depositInputInNumber, "deposit-input");
+            updateInnerText("current-balance", depositInputInNumber);
+        })
+
+        /* withdraw button to get withdraw input value*/
+        document.getElementById("withdraw-btn").addEventListener("click", function(){
+            let withDrawAmount = takeInputValue("withdraw-amount");
+
+        })
+
+        // take input value function
+        function takeInputValue(id){
+            let inputValue = document.getElementById(id).value;
+            let inputValueInNumber = parseFloat(inputValue);
+            return inputValueInNumber;
+        }
+
+        //calculation function
+        function updateInnerText(id, depositInputInNumber, clearDepositInput){
+            let currentInnerText = document.getElementById(id).innerText;
+            let currentTextToNumber = parseFloat(currentInnerText);
+            let updateInnerAmount = depositInputInNumber + currentTextToNumber;
+            document.getElementById(id).innerText = updateInnerAmount;
+
+            document.getElementById(clearDepositInput).value = ""; // clearing the deposit input filed
+        }
     </script>
 </body>
 
