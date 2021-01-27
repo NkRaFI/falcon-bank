@@ -39,7 +39,7 @@
             <div class="col-md-4">
                 <div class="withdraw m-4 p-3 status">
                     <h5>Withdraw</h5>
-                    <h2>$ <span class="current-withdraw">00</span></h2>
+                    <h2>$ <span id="current-withdraw">00</span></h2>
                 </div>
             </div>
             <div class="col-md-4">
@@ -102,6 +102,8 @@
         /* withdraw button to get withdraw input value*/
         document.getElementById("withdraw-btn").addEventListener("click", function(){
             let withDrawAmount = takeInputValue("withdraw-amount");
+            updateInnerText("current-withdraw", withDrawAmount, "withdraw-amount");
+            updateInnerText("current-balance", -1 * withDrawAmount);
 
         })
 
@@ -113,10 +115,10 @@
         }
 
         //calculation function
-        function updateInnerText(id, depositInputInNumber, clearDepositInput){
+        function updateInnerText(id, inputInNumber, clearDepositInput){
             let currentInnerText = document.getElementById(id).innerText;
             let currentTextToNumber = parseFloat(currentInnerText);
-            let updateInnerAmount = depositInputInNumber + currentTextToNumber;
+            let updateInnerAmount = inputInNumber + currentTextToNumber;
             document.getElementById(id).innerText = updateInnerAmount;
 
             document.getElementById(clearDepositInput).value = ""; // clearing the deposit input filed
